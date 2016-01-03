@@ -54,14 +54,22 @@
 		FBBE57421C39278B00AFCF10 /* ResponderChain */ = {
 			isa = PBXGroup;
 			children = (
-				FBBE57431C39278B00AFCF10 /* AppDelegate.swift */,
-				FBBE57451C39278B00AFCF10 /* ViewController.swift */,
-				FBBE57471C39278B00AFCF10 /* Main.storyboard */,
+				FBBE57591C392BDF00AFCF10 /* Classes */,
 				FBBE574A1C39278B00AFCF10 /* Assets.xcassets */,
-				FBBE574C1C39278B00AFCF10 /* LaunchScreen.storyboard */,
 				FBBE574F1C39278B00AFCF10 /* Info.plist */,
+				FBBE574C1C39278B00AFCF10 /* LaunchScreen.storyboard */,
+				FBBE57471C39278B00AFCF10 /* Main.storyboard */,
 			);
 			path = ResponderChain;
+			sourceTree = "<group>";
+		};
+		FBBE57591C392BDF00AFCF10 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FBBE57431C39278B00AFCF10 /* AppDelegate.swift */,
+				FBBE57451C39278B00AFCF10 /* ViewController.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
