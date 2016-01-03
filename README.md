@@ -11,7 +11,7 @@ Event D 		|
 				|
 			If the View is a UIControl subclass, UIKit checks the target and action properties
 				|
-			The action message is dispatched using UIApplication's sendEvent:to:from:forEvent
+			The action message is dispatched using UIApplication's sendAction:to:from:forEvent
 			The message is forwarded to the class specified in the target property. If nil, it is forwarded
 			to the First Responder, and passed down the Responder Chain until handled.
 ```
