@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     override func sendEvent(event: UIEvent) {
-        print(self.dynamicType, __FUNCTION__, event.allTouches()!.first!.phase.description)
+        print(self.dynamicType, __FUNCTION__, event.allTouches()!.first!.phase)
         
         super.sendEvent(event)
     }
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 class Window: UIWindow {
     
     override func sendEvent(event: UIEvent) {
-        print(self.dynamicType, __FUNCTION__, event.allTouches()!.first!.phase.description)
+        print(self.dynamicType, __FUNCTION__, event.allTouches()!.first!.phase)
         
         super.sendEvent(event)
     }
@@ -60,9 +60,9 @@ class Window: UIWindow {
     
 }
 
-extension UITouchPhase {
+extension UITouchPhase: CustomStringConvertible {
     
-    var description: String {
+    public var description: String {
         switch self {
         case .Began:
             return "Touch Began"
