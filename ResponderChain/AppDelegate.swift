@@ -35,7 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     override func sendEvent(event: UIEvent) {
-        print(self.dynamicType, __FUNCTION__, event.allTouches()!.first!.phase)
+        if let phase = event.allTouches()?.first?.phase {
+            print(self.dynamicType, __FUNCTION__, phase)
+        }
         
         super.sendEvent(event)
     }
@@ -49,7 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 class Window: UIWindow {
     
     override func sendEvent(event: UIEvent) {
-        print(self.dynamicType, __FUNCTION__, event.allTouches()!.first!.phase)
+        if let phase = event.allTouches()?.first?.phase {
+            print(self.dynamicType, __FUNCTION__, phase)
+        }
         
         super.sendEvent(event)
     }
