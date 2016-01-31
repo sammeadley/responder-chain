@@ -18,7 +18,7 @@ Event D 		|
 
 ## Discussion
 
-Actions are added to a UIControl subclass using `addTarget(target: AnyObject?, action: Selector, forControlEvents controlEvents: UIControlEvents)` or via Interface Builder.
+Actions are added to a UIControl subclass using `addTarget(_:action:forControlEvents:)` or via Interface Builder.
 
 When providing an explicit target, UIKit forwards the event to the specified class. If the selector is not implemented on the target class, an NSInvalidArgumentException "unrecognized selector sent to instance" is thrown.
 
@@ -30,4 +30,4 @@ Action methods are recognised based on their signature, conventionally these tak
 @IBAction func doSomething(sender: AnyObject)
 ```
 
-The more specific type used for the sender parameter, the better Interface Builder will be at filtering possible actions when assigning the target to the First Responder.
+The more specific type used for the sender parameter, the better Interface Builder will be at filtering possible actions.
