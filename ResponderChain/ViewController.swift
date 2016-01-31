@@ -20,7 +20,14 @@ class ViewController: UIViewController {
         let point = sender.convertPoint(CGPointZero, toView:self.collectionView)
         let indexPath = self.collectionView.indexPathForItemAtPoint(point)
         
-        print(self.dynamicType, __FUNCTION__, "Row:", indexPath!.row)
+        print("Event handled! I'm \(self.dynamicType) and I will handle the \(sender.dynamicType) touch event for item \(indexPath!.row) \n\n... Now where was I? Oh yeah...", terminator:"\n\n")
+    }
+    
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
     }
     
 }
@@ -37,18 +44,80 @@ extension ViewController: UICollectionViewDataSource {
     
 }
 
+class View: UIView {
+    
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
+    }
+    
+}
+
+class CollectionView: UICollectionView {
+    
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
+    }
+    
+}
+
 class CollectionViewCell: UICollectionViewCell {
     
     class func defaultReuseIdentifier() -> String {
         return "CollectionViewCell"
     }
     
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
+    }
+    
 }
 
 class Button: UIButton {
 
-//    @IBAction func didSelectButton(sender: UIButton) {
-//        print(self.dynamicType, __FUNCTION__)
-//    }
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
+    }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        printEvent(event)
+        
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        printEvent(event)
+        
+        super.touchesEnded(touches, withEvent: event)
+    }
+    
+    func printEvent(event: UIEvent?) {
+        if let phase = event?.allTouches()?.first?.phase {
+            print("\nHi, Button here. \"\(phase)\" received and understood. I'll let the Responder Chain know...")
+        }
+    }
+    
+}
+
+extension NSObject {
+    
+    func printNextResponder(nextResponder: UIResponder?) {
+        guard let responder = nextResponder else {
+            return
+        }
+        
+        print("-> \(self.dynamicType): Hey \(responder.dynamicType), something coming your way!")
+    }
+
 }

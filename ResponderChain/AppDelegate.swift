@@ -29,21 +29,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 @objc(Application) class Application: UIApplication {
     
     override func sendAction(action: Selector, to target: AnyObject?, from sender: AnyObject?, forEvent event: UIEvent?) -> Bool {
-        print(self.dynamicType, __FUNCTION__)
+        print("\nHold up, \(self.dynamicType) again! Attempting to send \(action) to \(target)")
         
         return super.sendAction(action, to: target, from: sender, forEvent: event)
     }
     
     override func sendEvent(event: UIEvent) {
         if let phase = event.allTouches()?.first?.phase {
-            print(self.dynamicType, __FUNCTION__, phase)
+            print("\nHello from \(self.dynamicType), the principal UIApplication class! Dispatched \"\(phase)\" event!")
         }
         
         super.sendEvent(event)
     }
     
-    @IBAction func didSelectButton(sender: UIButton) {
-        print(self.dynamicType, __FUNCTION__)
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
     }
     
 }
@@ -52,14 +55,17 @@ class Window: UIWindow {
     
     override func sendEvent(event: UIEvent) {
         if let phase = event.allTouches()?.first?.phase {
-            print(self.dynamicType, __FUNCTION__, phase)
+            print("Greetings from \(self.dynamicType) (UIWindow keyWindow), received \"\(phase)\" event, delivering to view where touch occurred...")
         }
         
         super.sendEvent(event)
     }
     
-    @IBAction func didSelectButton(sender: UIButton) {
-        print(self.dynamicType, __FUNCTION__)
+    override func nextResponder() -> UIResponder? {
+        let nextResponder = super.nextResponder()
+        printNextResponder(nextResponder)
+        
+        return nextResponder
     }
     
 }
