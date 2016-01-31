@@ -8,6 +8,9 @@
 
 import UIKit
 
+// Gross global variable to suppress print output until touch event received. There is almost certainly a better way. Maybe 100 better ways.
+var touchReceived = false
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -91,6 +94,8 @@ class Button: UIButton {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        touchReceived = true
+        
         printEvent(event)
         
         super.touchesBegan(touches, withEvent: event)
@@ -110,14 +115,16 @@ class Button: UIButton {
     
 }
 
-extension NSObject {
+extension UIResponder {
     
     func printNextResponder(nextResponder: UIResponder?) {
         guard let responder = nextResponder else {
             return
         }
         
-        print("-> \(self.dynamicType): Hey \(responder.dynamicType), something coming your way!")
+        if (touchReceived) {
+            print("-> \(self.dynamicType): Hey \(responder.dynamicType), something coming your way!")
+        }
     }
 
 }
