@@ -1,5 +1,7 @@
 ## Target-Action and the Responder Chain on iOS
 
+Presented at NSManchester, February 1, 2016. Slides available from [Speaker Deck.](https://speakerdeck.com/sammeadley/target-action-and-the-responder-chain-on-ios)
+
 Example Swift project illustrating the path taken by an event object when UIKit recognises a button tap within a collection view cell.
 
 ```
